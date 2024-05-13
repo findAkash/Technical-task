@@ -1,0 +1,12 @@
+version: '0.1'
+
+services:
+  fastapi:
+    build: .
+    ports:
+      - '8000:8000'
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ['fastapi', 'run']
