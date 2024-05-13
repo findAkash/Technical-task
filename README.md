@@ -1,67 +1,63 @@
-**Code Structure**
+---
 
-```
+# Microservice for Image Segmentation
+
+This microservice provides APIs for image segmentation using FastAPI.
+
+## Code Structure
+
 The microservice is organized into three main files:
 
-1. main.py
-This file is responsible for initiating and running the microservice.
+1. **main.py**: Responsible for initiating and running the microservice.
+2. **api.py**: Contains all the API endpoint definitions and related logic.
+3. **config.py**: Stores configuration settings for the microservice.
 
-2. api.py
-The api.py file contains all the API endpoint definitions and related logic. Each endpoint handles a specific HTTP request and performs the necessary operations.
+## Testing the Microservice
 
-3. config.py
-config.py stores configuration settings for the microservice. These settings include details such as host, port, database connection parameters, and any other environment-specific configurations.
-```
-
-**We can test the microservice in two different way**
-
-`Without docker follow these steps`
+### Without Docker
 
 1. **Create a Virtual Environment and Activate It**
-
    ```bash
    python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
 
 2. **Install the Requirements**
-
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Run the service**
+3. **Run the Service**
    ```bash
-   fastapi dev (to the service in development environment)
-   fastapi run (to run the service in production environment)
+   fastapi dev  # Development environment
+   fastapi run  # Production environment
    ```
 
-`Or directly run service through docker`
-**Install docker if not installed already**
-reference for proper instruction (https://docs.docker.com/engine/install/)
+### With Docker
 
-**Run through docker by containerising it**
+1. **Install Docker** (if not installed already)  
+   Refer to the official Docker documentation for installation instructions: [https://docs.docker.com/engine/install/](https://docs.docker.com/engine/install/)
 
-```bash (need to be in project directory)
-docker-compose up (first it might take time because it will build the contrainer including all the depencies, model)
+2. **Run the Service through Docker**
+   ```bash
+   docker-compose up  # Build and run the container (initial run)
+   docker-compose up -d  # Run the container in detached mode (background)
+   docker-compose up --build  # Rebuild the container with changes
+   docker-compose down  # Stop the service
+   ```
 
-docker-compose up -d (to run it in background)
+## Testing API Endpoints
 
-docker-compose up --build (whenever we make any changes in the code we have to trigger the docker that to build image instead of using old image)
+Once the service is running, you can test the API endpoints using tools like cURL, Postman, or any HTTP client.
 
-docker-compose down (to end the service)
-```
+### FastAPI Docs
+You can also use FastAPI's built-in documentation tool to test the endpoints.  
+Access the documentation at: [http://localhost:8000/docs](http://localhost:8000/docs)
 
-**Testing**
+#### Endpoint for Image Segmentation
+- **POST**: `/api/segment-image`
 
-```
-Once the service is running, we can test the API endpoints using tools like cURL, Postman, or any HTTP client.
+Add images that need to be processed, and multiple images can be added and tested simultaneously.  
+The processed images will be stored in the `generated` folder in the project directory.
 
-The endpoint for testing is (http://localhost:8000/api/segment-image)
-
-We can use fastapi docs to test --- http://localhost:8000/docs#/default/segment_image_api_segment_image_post
-
-Add image that need to be processed, multiple images can be added and tested.
-
-The processed image will be stored in the folder named "generated"  in same project directory.
-```
+---
