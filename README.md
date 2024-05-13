@@ -43,18 +43,16 @@ reference for proper instruction (https://docs.docker.com/engine/install/)
 **Run through docker by containerising it**
 
 ```bash (need to be in project directory)
-docker-compose up (first it might take time because it will build the contrainer including all the depencies, model)
+docker-compose up #(first it might take time because it will build the contrainer including all the depencies, model)
 
-docker-compose up -d (to run it in background)
+docker-compose up -d #(to run it in background)
 
-docker-compose up --build (whenever we make any changes in the code we have to trigger the docker that to build image instead of using old image)
+docker-compose up --build #(whenever we make any changes in the code we have to trigger the docker that to build image instead of using old image)
 
-docker-compose down (to end the service)
+docker-compose down #(to end the service)
 ```
 
 **Testing**
-
-```
 Once the service is running, we can test the API endpoints using tools like cURL, Postman, or any HTTP client.
 
 The endpoint for testing is (http://localhost:8000/api/segment-image)
@@ -64,4 +62,3 @@ We can use fastapi docs to test --- http://localhost:8000/docs#/default/segment_
 Add image that need to be processed, multiple images can be added and tested.
 
 The processed image will be stored in the folder named "generated"  in same project directory.
-```
