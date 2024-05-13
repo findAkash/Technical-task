@@ -32,8 +32,8 @@ config.py stores configuration settings for the microservice. These settings inc
 
 3. **Run the service**
    ```bash
-   fastapi dev (to the service in development environment)
-   fastapi run (to run the service in production environment)
+   fastapi dev # (to the service in development environment)
+   fastapi run # (to run the service in production environment)
    ```
 
 `Or directly run service through docker`
